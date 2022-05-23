@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const pathToFile = path.join(__dirname, 'secret-folder');
+const pathToFile = path.resolve(__dirname, 'secret-folder');
 
 fs.readdir(pathToFile, {withFileTypes: true}, (errors, files) => {
   if (errors) {
@@ -9,7 +9,7 @@ fs.readdir(pathToFile, {withFileTypes: true}, (errors, files) => {
   }
   files.forEach(file => { 
     if (file.isFile()) {
-      fs.stat(path.join(pathToFile, file.name), (errors, stat) => {
+      fs.stat(path.resolve(pathToFile, file.name), (errors, stat) => {
         if (errors) {
           console.log(errors);
         }
